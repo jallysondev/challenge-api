@@ -18,36 +18,6 @@ class ProductService
         $this->productRepository = $productRepository;
     }
 
-    public function store(array $validatedData): array
-    {        
-        DB::beginTransaction();
-
-        try {
-            $product = $this->productRepository->store($validatedData);
-            
-        } catch (\Exception $e) {
-            DB::rollback();
-            \Log::error(' FAILED TO CREATE PRODUCT ', [
-                'error' => $e->getMessage(),
-                'file'  => $e->getFile(),
-                'line'  => $e->getLine(),
-            ]);
-
-            return [                
-                'message'    => 'Failed to create product',
-                'statusCode' => Response::HTTP_UNPROCESSABLE_ENTITY,
-            ];
-        }
-
-        DB::commit();
-
-        return [
-            'message'    => 'Product Created',
-            'data'       => new ProductResource($product),
-            'statusCode' => Response::HTTP_CREATED,
-        ];
-    }
-
     public function update(Product $product, $validatedData): array
     {        
         DB::beginTransaction();

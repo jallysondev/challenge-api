@@ -15,15 +15,6 @@ class ProductController extends Controller
         $this->productService = $productService;
     }
 
-    public function store(ProductStoreRequest $request)
-    {
-        $validatedData = $request->validated();
-
-        $response = $this->productService->store($validatedData);
-
-        return response()->json($response)->setStatusCode($response['statusCode']);
-    }
-
     public function getAll()
     {
         $response = $this->productService->getAll();
