@@ -1,5 +1,9 @@
 # Challenge API by [Coodesh](https://coodesh.com/)
 
+## About
+
+This API is a challenge taught by Coodesh. Basically it is an import using an external API, which is executed via cron, and a crud to complement it.
+
 ## Target
 
 -   https://coodesh-challenge-api.mjsolutions.space/api
@@ -36,6 +40,10 @@
 ### Finally, to ensure that there will be no problem with the key, the application executes the command to recreate it:
 
     php artisan key:generate
+
+### Now, run server:
+
+    php artisan serve
 
 Generally, the application is started in [http://localhost:8000](http://localhost:8000) (check terminal info)
 
