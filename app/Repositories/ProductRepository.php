@@ -14,7 +14,12 @@ class ProductRepository
 
     public function getAll(): LengthAwarePaginator
     {
-        return $this->product->all()->paginate();
+        return $this->product->paginate();
+    }
+
+    public function getSearch($request): LengthAwarePaginator
+    {
+        return $this->product->search($request['search'])->paginate();
     }
 
     public function update($product, $validatedData): bool

@@ -19,22 +19,22 @@ class ProductService
     }
 
     public function update(Product $product, $validatedData): array
-    {        
+    {
         DB::beginTransaction();
 
         try {
-            $product = $this->productRepository->update($product, $validatedData);
+            $this->productRepository->update($product, $validatedData);
 
         } catch (\Exception $e) {
             DB::rollback();
             \Log::error(' FAILED TO UPDATE PRODUCT ', [
                 'error' => $e->getMessage(),
-                'file'  => $e->getFile(),
-                'line'  => $e->getLine(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
             ]);
 
-            return [                
-                'message'    => 'Failed to update product',
+            return [
+                'message' => 'Failed to update product',
                 'statusCode' => Response::HTTP_UNPROCESSABLE_ENTITY,
             ];
         }
@@ -42,8 +42,8 @@ class ProductService
         DB::commit();
 
         return [
-            'message'    => 'Product updated',
-            'data'       => new ProductResource($product),
+            'message' => 'Product updated',
+            'data' => new ProductResource($product),
             'statusCode' => Response::HTTP_CREATED,
         ];
     }
@@ -53,15 +53,25 @@ class ProductService
         $data = $this->productRepository->getAll();
 
         return [
-            'data'       => new ProductResource($data),
+            'data' => new ProductResource($data),
             'statusCode' => Response::HTTP_OK,
         ];
     }
 
     public function getOneById(Product $product): array
-    {        
+    {
         return [
-            'data'       => new ProductResource($product),
+            'data' => new ProductResource($product),
+            'statusCode' => Response::HTTP_OK,
+        ];
+    }
+
+    public function getSearch($request): array
+    {
+        $data = $this->productRepository->getSearch($request);
+
+        return [
+            'data' => new ProductResource($data),
             'statusCode' => Response::HTTP_OK,
         ];
     }
@@ -76,21 +86,21 @@ class ProductService
             DB::rollback();
             \Log::error(' FAILED TO DELETE PRODUCT ', [
                 'error' => $e->getMessage(),
-                'file'  => $e->getFile(),
-                'line'  => $e->getLine(),
+                'file' => $e->getFile(),
+                'line' => $e->getLine(),
             ]);
 
             return [
-                'message'    => 'Fail to delete product',
+                'message' => 'Fail to delete product',
                 'statusCode' => Response::HTTP_UNPROCESSABLE_ENTITY,
             ];
         }
         DB::commit();
 
         return [
-            'message'    => 'Product deleted',
-            'data'       => new ProductResource($product),
+            'message' => 'Product deleted',
+            'data' => new ProductResource($product),
             'statusCode' => Response::HTTP_OK,
         ];
-    }    
+    }
 }

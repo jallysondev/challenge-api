@@ -2,14 +2,18 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Laravel\Scout\Searchable;
 
 class Product extends Model
 {
+    use HasFactory, Searchable;
+
     protected $fillable = [
         'code',
         'status',
-        'imported_at',
+        'imported_t',
         'url',
         'creator',
         'created_t',
@@ -29,7 +33,6 @@ class Product extends Model
         'nutriscore_score',
         'nutriscore_grade',
         'main_category',
-        'image_url'
+        'image_url',
     ];
-
 }

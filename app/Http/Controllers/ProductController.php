@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
+use App\Http\Requests\GetSearch;
+use App\Http\Requests\UpdateProduct;
 use App\Models\Product;
 use App\Services\ProductService;
+use Illuminate\Http\JsonResponse;
 
 class ProductController extends Controller
 {
@@ -15,7 +17,7 @@ class ProductController extends Controller
         $this->productService = $productService;
     }
 
-    public function getAll()
+    public function getAll(): JsonResponse
     {
         $response = $this->productService->getAll();
 
@@ -23,7 +25,7 @@ class ProductController extends Controller
             ->setStatusCode($response['statusCode']);
     }
 
-    public function getOneById(Product $product)
+    public function getOneById(Product $product): JsonResponse
     {
         $response = $this->productService->getOneById($product);
 
@@ -31,7 +33,23 @@ class ProductController extends Controller
             ->setStatusCode($response['statusCode']);
     }
 
-    public function destroy(Product $product)
+    public function update(Product $product, UpdateProduct $request): JsonResponse
+    {
+        $response = $this->productService->update($product, $request->validated());
+
+        return response()->json($response)
+            ->setStatusCode($response['statusCode']);
+    }
+
+    public function getSearch(GetSearch $request): JsonResponse
+    {
+        $response = $this->productService->getSearch($request->validated());
+
+        return response()->json($response)
+            ->setStatusCode($response['statusCode']);
+    }
+
+    public function destroy(Product $product): JsonResponse
     {
         $response = $this->productService->destroy($product);
 
