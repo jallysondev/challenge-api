@@ -2,7 +2,7 @@
 
 ## About
 
-This API is a challenge taught by Coodesh. Basically it is an import using an external API, which is executed via cron, and a crud to complement it.
+This API is a challenge taught by Coodesh. Basically it is an import using an external API, which is executed via cron, and a crud to complement it. 
 
 ## Target
 
@@ -55,6 +55,9 @@ Generally, the application is started in [http://localhost:8000](http://localhos
 ### To run the tests use:
 
     ./vendor/bin/pest
+
+### The cron is configured to run every day at midnight. But you can also run it at any time using the command:
+    php artisan import-products
 
 ### For more information access:
 
