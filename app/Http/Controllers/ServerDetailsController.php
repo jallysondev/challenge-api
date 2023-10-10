@@ -16,8 +16,8 @@ class ServerDetailsController extends Controller
 
         $data = [
             'dbStatus' => ! empty(DB::connection()->getPdo()) ? 'Active' : 'Inactive',
-            'onlineTime' => Carbon::createFromTimestamp($_SERVER['REQUEST_TIME'])->diffForHumans(),
             'memoryUse' => "$memoryUsageInMB MB",
+            'lastRunCron' => Carbon::today()->setTime(0, 0, 0),
         ];
 
         return response()->json(new ServerDetailsResource($data));
