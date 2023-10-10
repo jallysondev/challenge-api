@@ -2,7 +2,7 @@
 
 ## About
 
-This API is a challenge taught by Coodesh. Basically it is an import using an external API, which is executed via cron, and a crud to complement it. 
+This API is a challenge taught by Coodesh. Basically it is an import using an external API, which is executed via cron, and a crud to complement it.
 
 ## Target
 
@@ -64,3 +64,7 @@ Generally, the application is started in [http://localhost:8000](http://localhos
 ## https://laravel.com/
 
 This is a challenge by [Coodesh](https://coodesh.com/).
+
+### Presentation Link:
+
+- https://www.loom.com/embed/fb15424fe03e49619dd7c91db6774e64
