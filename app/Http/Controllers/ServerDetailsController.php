@@ -15,7 +15,7 @@ class ServerDetailsController extends Controller
         $memoryUsageInMB = number_format($memoryUsage / (1024 * 1024), 2);
 
         $data = [
-            'dbStatus' => ! empty(DB::connection()->getPdo()),
+            'dbStatus' => ! empty(DB::connection()->getPdo()) ? 'Active' : 'Inactive',
             'onlineTime' => Carbon::createFromTimestamp($_SERVER['REQUEST_TIME'])->diffForHumans(),
             'memoryUse' => "$memoryUsageInMB MB",
         ];
