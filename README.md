@@ -8,12 +8,17 @@ This API is a challenge taught by Coodesh. Basically it is an import using an ex
 
 -   https://coodesh-challenge-api.mjsolutions.space/api
 
+# Postman
+
+- https://www.postman.com/jallysondev/workspace/challenge-api
+
 ## Stack summary
 
 -   [PHP](https://www.php.net/docs.php)
 -   [Laravel](https://laravel.com/)
 -   [Pest](https://pestphp.com/docs)
 -   [MySQL](https://dev.mysql.com/doc/)
+-   [Algolia](https://www.algolia.com/pt-br/)
 
 ### Third-party
 
@@ -46,6 +51,10 @@ This API is a challenge taught by Coodesh. Basically it is an import using an ex
     php artisan serve
 
 Generally, the application is started in [http://localhost:8000](http://localhost:8000) (check terminal info)
+
+### To run the tests use:
+
+    ./vendor/bin/pest
 
 ### For more information access:
 
